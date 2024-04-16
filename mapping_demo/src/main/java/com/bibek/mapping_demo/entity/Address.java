@@ -1,54 +1,43 @@
-package com.bibek.customer_crud_demo.entity;
+package com.bibek.mapping_demo.entity;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "address")
 public class Address {
-
-    // define a field
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "addr_id")
-    private Integer addrId;
-    @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    private Customer customer;
+    @SequenceGenerator(name = "addressSequence", sequenceName = "addressSequence", initialValue = 100 ,allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "addressSequence")
+    private int addressId;
     @Column(name = "street_address", nullable = false, unique = true)
     private String streetAddress;
     @Column(name = "city", nullable = false)
     private String city;
-    @Column(name = "state", nullable = false, unique = true)
+    @Column(name = "state", nullable = false, unique = false)
     private String state;
-    @Column(name = "postal_code", nullable = false)
-    private Integer postalCode;
+    @Column(name = "zip-code", nullable = false)
+    private int postalCode;
+    @ManyToOne
+    @JoinColumn(name = "student_id", referencedColumnName = "student_id", foreignKey = @ForeignKey(name = "address_student_id_fk"))
+    private Student student;
 
-    // define a no args constructor
     public Address() {
     }
 
-    public Address(Customer customer, String streetAddress, String city, String state, Integer postalCode) {
-        this.customer = customer;
+    public Address(String streetAddress, String city, String state, int postalCode, Student student) {
         this.streetAddress = streetAddress;
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
+        this.student = student;
     }
 
-    // getter and setter methods
-    public Integer getAddrId() {
-        return addrId;
+    public int getAddressId() {
+        return addressId;
     }
 
-    public void setAddrId(Integer addrId) {
-        this.addrId = addrId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
     }
 
     public String getStreetAddress() {
@@ -75,20 +64,26 @@ public class Address {
         this.state = state;
     }
 
-    public Integer getPostalCode() {
+    public int getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(Integer postalCode) {
+    public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
     }
 
-    // define a toString() methods
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     @Override
     public String toString() {
         return "Address{" +
-                "addrId=" + addrId +
-                ", customer=" + customer +
+                "addressId=" + addressId +
                 ", streetAddress='" + streetAddress + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +

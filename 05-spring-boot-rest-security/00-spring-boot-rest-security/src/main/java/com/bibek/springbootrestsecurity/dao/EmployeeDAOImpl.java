@@ -35,10 +35,10 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     }
 
     @Override
-    public Employee findByFirstName(String firstName) {
-        Query query = entityManager.createQuery("SELECT e from Employee e where e.firstName =:theData");
-        query.setParameter("theData", firstName);
-        return entityManager.find(Employee.class, query);
+    public List<Employee> findByFirstName(String firstName) {
+        TypedQuery<Employee> employeeTypedQuery = entityManager.createQuery("FROM Employee e WHERE e.firstName=:theData", Employee.class);
+        employeeTypedQuery.setParameter("theData", firstName);
+        return employeeTypedQuery.getResultList();
     }
 
     @Override
@@ -49,6 +49,6 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 
     @Override
     public int deleteAll() {
-        return entityManager.createQuery("DELETE from Employee ", Employee.class).executeUpdate();
+        return entityManager.createQuery("DELETE FROM Employee ").executeUpdate();
     }
 }

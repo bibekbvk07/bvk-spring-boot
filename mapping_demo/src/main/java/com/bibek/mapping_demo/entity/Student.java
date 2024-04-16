@@ -1,41 +1,55 @@
-package com.bibek.customer_crud_demo.entity;
+package com.bibek.mapping_demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "customer")
-public class Customer {
-    // Define private fields
+@Table(name = "student")
+public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "student_id")
+    private int studentId;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "dob")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    private Date dob;
     @Column(name = "email")
     private String email;
 
-    // define a no-args constructor and args constructor
-    public Customer() {
+    @OneToOne(mappedBy = "student")
+    @JsonIgnore
+    private Laptop laptop;
+
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Address> address;
+
+    public Student() {
     }
 
-    public Customer(String firstName, String lastName, String email) {
+    public Student(String firstName, String lastName, Date dob, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.dob = dob;
         this.email = email;
     }
 
-    // define getter and setter method
-    public Integer getCustomerId() {
-        return id;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.id = customerId;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public String getFirstName() {
@@ -54,6 +68,14 @@ public class Customer {
         this.lastName = lastName;
     }
 
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -62,14 +84,13 @@ public class Customer {
         this.email = email;
     }
 
-    // define a toString() methods
-
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerId=" + id+
+        return "Student{" +
+                "studentId=" + studentId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", dob=" + dob +
                 ", email='" + email + '\'' +
                 '}';
     }

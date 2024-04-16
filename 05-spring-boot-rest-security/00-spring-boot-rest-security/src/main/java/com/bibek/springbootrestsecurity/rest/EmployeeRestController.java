@@ -36,6 +36,11 @@ public class EmployeeRestController {
         return employee;
     }
 
+    @GetMapping("/employees/{firstName}")
+    public List<Employee> findEmployeeByFirstName(@PathVariable String firstName){
+        return employeeService.findByFirstName(firstName);
+    }
+
     // expose "/employees" to create/add new employee
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee theEmployee){

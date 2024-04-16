@@ -2,16 +2,13 @@ package com.bibek.customer_crud_demo.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table(name = "customer")
-public class Customer {
-    // Define private fields
+@Table(name = "employee")
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "emp_id")
+    private Integer empId;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -19,23 +16,21 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    // define a no-args constructor and args constructor
-    public Customer() {
+    public Employee() {
     }
 
-    public Customer(String firstName, String lastName, String email) {
+    public Employee(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-    // define getter and setter method
-    public Integer getCustomerId() {
-        return id;
+    public Integer getEmpId() {
+        return empId;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.id = customerId;
+    public void setEmpId(Integer empId) {
+        this.empId = empId;
     }
 
     public String getFirstName() {
@@ -62,12 +57,10 @@ public class Customer {
         this.email = email;
     }
 
-    // define a toString() methods
-
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerId=" + id+
+        return "Employee{" +
+                "empId=" + empId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

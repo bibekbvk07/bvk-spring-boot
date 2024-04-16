@@ -9,7 +9,7 @@ public interface EmployeeService {
     Employee save(Employee theEmployee);
     List<Employee> findAll();
     Employee findById(int id);
-    Employee findByFirstName(String firstName);
+    List<Employee> findByFirstName(String firstName);
     void deleteById(int id);
 
     int deleteAll();
