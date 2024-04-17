@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/bvk/laptops")
 public class LaptopController {
-
     private final LaptopService laptopService;
 
     @Autowired

@@ -28,6 +28,16 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
+    public ResponseEntity<GlobalErrorResponse> handlesException(AddressNotFoundException exc){
+        GlobalErrorResponse error = new GlobalErrorResponse();
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMessage(exc.getMessage());
+        error.setTimeStamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
     public ResponseEntity<GlobalErrorResponse> handlesException(Exception exc){
         GlobalErrorResponse error = new GlobalErrorResponse();
         error.setStatus(HttpStatus.BAD_REQUEST.value());
