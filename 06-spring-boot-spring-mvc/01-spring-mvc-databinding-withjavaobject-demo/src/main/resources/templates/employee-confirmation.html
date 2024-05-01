@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Confirmation</title>
+    <!-- CSS file Reference -->
+    <link rel="stylesheet" th:href="@{/css/confirmation.css}">
+</head>
+<body>
+<div class="confirmation">
+    <h4>Employee Confirmation Details:</h4>
+    <label><strong>Employee Name:</strong></label>
+    <span th:text="${employee.firstName} + ' '+ ${employee.lastName}"/>
+    <br><br>
+
+    <label><strong>Employee Email: </strong></label>
+    <span th:text="${employee.email}"/>
+    <br><br>
+
+    <label><strong>Department: </strong></label>
+    <span th:text="${employee.department}"/>
+    <br><br>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+footer {
+    background-color: #343a40;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0 5px;
+}
+.container {
+    position: fixed;
+    overflow-y: auto; /* Enable vertical scrolling */
+    top: 50px; /* Adjust the top position according to your layout */
+    bottom: 100px; /* Adjust the bottom position according to your layout */
+    padding-bottom: 50px;
+    left: 0;
+    right: 0;
+}
+.error{
+    color: red;
+    font-style: inherit;
+    font-size: large;
+}
+.order{
+    margin-left: 900px;
+    align-content: center;
+    margin-bottom: 10px;
+}
+

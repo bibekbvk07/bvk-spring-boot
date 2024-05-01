@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Registration Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/form.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<div class="container">
+    <i> Fill out the form. Asterisk(*) means required</i>
+    <br><br>
+    <form th:action="@{/processForm}" th:object="${customer}" method="POST">
+        <div class="form-group">
+            <label th:field="*{firstName}">First Name (*): </label>
+            <label class="form-label">
+                <input type="text" th:field="*{firstName}"/>
+            </label>
+            <!-- Add error message (if present) -->
+            <span th:if="${#fields.hasErrors('firstName')}"
+                  th:errors="*{firstName}"
+                  class="error">
+            </span>
+            <br><br>
+        </div>
+
+        <div class="form-group">
+            <label th:field="*{lastName}">Last Name (*): </label>
+            <label class="form-label">
+                <input type="text" th:field="*{lastName}"/>
+            </label>
+            <!-- Add error message (if present) -->
+            <span th:if="${#fields.hasErrors('lastName')}"
+                  th:errors="*{lastName}"
+                  class="error">
+            </span>
+            <br><br>
+        </div>
+
+        <div class="form-group">
+            <label th:field="*{freePasses}">Free Passes (*): </label>
+            <label class="form-label">
+                <input type="text" th:field="*{freePasses}"/>
+            </label>
+            <!-- Add error message -->
+            <span th:if="${#fields.hasErrors('freePasses')}"
+                  th:errors="*{freePasses}"
+                  class="error">
+            </span>
+            <br><br>
+        </div>
+
+        <div class="form-group">
+            <label th:field="*{postalCode}">Postal Code (*): </label>
+            <label class="form-label">
+                <input type="text" th:field="*{postalCode}"/>
+            </label>
+            <!-- Add error message (if present) -->
+            <span th:if="${#fields.hasErrors('postalCode')}"
+                  th:errors="*{postalCode}"
+                  class="error">
+            </span>
+            <br><br>
+        </div>
+
+        <div class="form-group">
+            <label th:field="*{courseCode}">Course Code (*): </label>
+            <label class="form-label">
+                <input type="text" th:field="*{courseCode}"/>
+            </label>
+            <!-- Add error message (if present) -->
+            <span th:if="${#fields.hasErrors('courseCode')}"
+                  th:errors="*{courseCode}"
+                  class="error">
+            </span>
+            <br><br>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+</div>
+
+</body>
+</html>

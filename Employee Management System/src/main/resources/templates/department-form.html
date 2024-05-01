@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <title>About Us</title>
+</head>
+<body>
+<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/home}">EMS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/departments/lists}">Department</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<br><br>
+<div class="container-md border border-2">
+  <h3>Add Department</h3>
+  <hr>
+  <p class="h4 mb-4"> Save Department</p>
+
+  <form action="#" th:action="@{/departments/save}" th:object="${department}" method="POST">
+    <!-- Add hidden form field to handle update -->
+    <input type="hidden" th:field="*{deptId}"/>
+    <div class="mb-4">
+      <label th:field="${department.name}" class="form-label">Department Name:</label>
+      <label>
+        <input type="text" th:field="${department.name}" class="form-control" placeholder="Department Name">
+      </label>
+      <!-- Show error message (if present) -->
+      <span th:if="${#fields.hasErrors('name')}"
+            th:errors="*{name}"
+            class="error">
+      </span>
+    </div>
+    <div class="mb-4">
+      <label th:field="${department.email}" class="form-label">Email Address:</label>
+      <label>
+        <input type="email" th:field="${department.email}" class="form-control" placeholder="name@example.com">
+      </label>
+      <!-- Show error message (if present) -->
+      <span th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}"
+            class="error">
+      </span>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label">
+        <button type="submit" class="btn btn-secondary">Save</button>
+      </label>
+    </div>
+
+  </form>
+
+</div>
+
+<!-- Footer Section ----->
+<footer>
+  <div class="container-sm sticky-bottom">
+  <p class="text-center mb-0">© 2024 Employee Management System. All rights reserved.</p>
+</div>
+</footer>
+
+</body>
+</html>
